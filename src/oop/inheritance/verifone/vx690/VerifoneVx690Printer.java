@@ -1,6 +1,8 @@
 package oop.inheritance.verifone.vx690;
 
-public class VerifoneVx690Printer {
+import oop.inheritance.core.TPVPrint;
+
+public class VerifoneVx690Printer implements TPVPrint {
 
     /**
      * Prints a message on the current line at the specified horizontal position

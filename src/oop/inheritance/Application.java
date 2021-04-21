@@ -2,6 +2,10 @@ package oop.inheritance;
 
 import java.time.LocalDateTime;
 
+import oop.inheritance.core.TPVDisplay;
+import oop.inheritance.core.TPVFactory;
+import oop.inheritance.core.TPVFactory2;
+import oop.inheritance.core.TPVPrint;
 import oop.inheritance.data.Card;
 import oop.inheritance.data.CommunicationType;
 import oop.inheritance.data.SupportedTerminal;
@@ -21,9 +25,15 @@ public class Application {
 
     private CommunicationType communicationType = CommunicationType.ETHERNET;
     private SupportedTerminal supportedTerminal;
+    private TPVFactory tpvFactory;
+    private TPVFactory2 tpvFactory2;
 
-    public Application(SupportedTerminal supportedTerminal) {
+    public Application(SupportedTerminal supportedTerminal)
+    {
         this.supportedTerminal = supportedTerminal;
+
+        tpvFactory = new TPVFactory(supportedTerminal);
+        tpvFactory2 = new TPVFactory2(supportedTerminal);
     }
 
     public void showMenu() {
@@ -87,18 +97,18 @@ public class Application {
             ingenicoDisplay.showMessage(5, 25, "DENEGADA");
         }
     }
-
+    //aki
     private void printReceipt(Transaction transaction, String hostReference) {
-        IngenicoPrinter ingenicoPrinter = new IngenicoPrinter();
+        TPVPrint tpvPrint = tpvFactory2.getInstance;
         Card card = transaction.getCard();
 
-        ingenicoPrinter.print(5, "APROBADA");
-        ingenicoPrinter.lineFeed();
-        ingenicoPrinter.print(5, card.getAccount());
-        ingenicoPrinter.lineFeed();
-        ingenicoPrinter.print(5, "" + transaction.getAmountInCents());
-        ingenicoPrinter.lineFeed();
-        ingenicoPrinter.print(5, "________________");
+        TPVPrint.print(5, "APROBADA");
+        TPVPrint.lineFeed();
+        TPVPrint.print(5, card.getAccount());
+        TPVPrint.lineFeed();
+        TPVPrint.print(5, "" + transaction.getAmountInCents());
+        TPVPrint.lineFeed();
+        TPVPrint.print(5, "________________");
 
     }
 
@@ -142,14 +152,13 @@ public class Application {
     }
 
     public void clearScreen() {
-        if (supportedTerminal == SupportedTerminal.INGENICO) {
-            IngenicoDisplay ingenicoDisplay = new IngenicoDisplay();
+        TPVDisplay tpvDisplay = tpvFactory.getDisplayInstance();
 
-            ingenicoDisplay.clear();
-        } else {
-            VerifoneV240mDisplay verifoneV240mDisplay = new VerifoneV240mDisplay();
+            tpvDisplay.clear();
+            tpvDisplay.clear();
+            tpvDisplay.clear();
+            tpvDisplay.clear();
 
-            verifoneV240mDisplay.clear();
         }
     }
-}
+

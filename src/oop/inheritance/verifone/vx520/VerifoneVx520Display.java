@@ -1,6 +1,8 @@
 package oop.inheritance.verifone.vx520;
 
-public class VerifoneVx520Display {
+import oop.inheritance.core.TPVDisplay;
+
+public class VerifoneVx520Display implements TPVDisplay {
 
     /**
      * Prints a message to specied position
