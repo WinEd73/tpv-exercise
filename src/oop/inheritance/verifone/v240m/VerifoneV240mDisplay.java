@@ -1,8 +1,24 @@
 package oop.inheritance.verifone.v240m;
 
 import oop.inheritance.core.TPVDisplay;
+import oop.inheritance.ingenico.IngenicoDisplay;
 
 public class VerifoneV240mDisplay implements TPVDisplay {
+
+    private static VerifoneV240mDisplay uniqueInstance;
+
+    private boolean lightTunedOn;
+
+    private VerifoneV240mDisplay(){
+
+    }
+
+    public static VerifoneV240mDisplay getInstance(){
+        if(uniqueInstance == null) {
+            uniqueInstance = new VerifoneV240mDisplay();
+        }
+        return uniqueInstance;
+    }
 
     /**
      * Prints a message to specied position

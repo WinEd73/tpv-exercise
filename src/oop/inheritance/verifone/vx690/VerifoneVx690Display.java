@@ -1,8 +1,24 @@
 package oop.inheritance.verifone.vx690;
 
 import oop.inheritance.core.TPVDisplay;
+import oop.inheritance.ingenico.IngenicoDisplay;
 
 public class VerifoneVx690Display implements TPVDisplay {
+
+    private static VerifoneVx690Display uniqueInstance;
+
+    private boolean lightTurnedOn;
+
+    private VerifoneVx690Display(){
+
+    }
+
+    public static VerifoneVx690Display getInstance(){
+        if(uniqueInstance == null){
+            uniqueInstance = new VerifoneVx690Display();
+        }
+        return uniqueInstance;
+    }
 
     /**
      * Prints a message to specied position

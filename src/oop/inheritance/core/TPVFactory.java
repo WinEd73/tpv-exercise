@@ -16,16 +16,16 @@ public class TPVFactory {
 
     public TPVDisplay getDisplayInstance() {
         if (supportedTerminal == SupportedTerminal.INGENICO) {
-            return new IngenicoDisplay();
+            return IngenicoDisplay.getInstance();
 
         } else if (supportedTerminal == SupportedTerminal.VERIFONE_240) {
-            return new VerifoneV240mDisplay();
+            return VerifoneV240mDisplay.getInstance();
 
         } else if (supportedTerminal == SupportedTerminal.VERIFONE_520) {
-            return new VerifoneVx520Display();
+            return VerifoneVx520Display.getInstance();
 
         } else if (supportedTerminal == SupportedTerminal.VERIFONE_690) {
-            return new VerifoneVx690Display();
+            return VerifoneVx690Display.getInstance();
         }
 
         return null;
